@@ -25,7 +25,7 @@ export default class TechPage extends React.Component {
 	handleClick(index, changeBy) {
 		const newstate = update(this.state, {
 			technologies: {
-				[index]: { count: { $apply: (q) => Number(q) + changeBy } }
+				[index]: { count: { $apply: (q) => q + changeBy } }
 			}
 		});
 		this.setState(newstate);
@@ -70,6 +70,7 @@ export default class TechPage extends React.Component {
 				{this.state.adding && (
 					<TechForm
 						name={this.state.newTech.tech}
+						count={this.state.newTech.count}
 						onChange={this.onChange}
 						onSave={this.onSave}
 						onReset={this.onCancel}
