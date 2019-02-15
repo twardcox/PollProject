@@ -1,44 +1,45 @@
 {
-  "name": "pollproject",
-  "version": "1.0.0",
-  "description": "Excercise in creating a polling project",
-  "main": "./server/server.js",
-  "scripts": {
-    "build": "webpack --config client/webpack.config.js",
-    "start": "nodemon"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/un-loop/PollProject.git"
-  },
-  "author": "Michael Armes",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/un-loop/PollProject/issues"
-  },
-  "homepage": "https://github.com/un-loop/PollProject#readme",
-  "dependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/runtime": "^7.3.1",
-    "aws-sdk": "^2.395.0",
-    "axios": "^0.18.0",
-    "koa": "^2.6.2",
-    "koa-bodyparser": "^4.2.1",
-    "koa-mount": "^4.0.0",
-    "koa-resource-router": "^0.4.0",
-    "koa-static": "^5.0.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "webpack": "^4.29.0"
-  },
-  "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.2.0",
-    "@babel/preset-env": "^7.3.1",
-    "@babel/preset-react": "^7.0.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.5",
-    "nodemon": "^1.18.9",
-    "npm-run-all": "^4.1.5",
-    "webpack-cli": "^3.2.1"
-  }
+	"name": "pollproject",
+	"version": "1.0.0",
+	"description": "Excercise in creating a polling project",
+	"main": "./server/server.js",
+	"scripts": {
+		"build": "webpack --config client/webpack.config.js",
+		"start": "webpack --config client/webpack.config.js && nodemon"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/un-loop/PollProject.git"
+	},
+	"author": "Michael Armes",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/un-loop/PollProject/issues"
+	},
+	"homepage": "https://github.com/un-loop/PollProject#readme",
+	"dependencies": {
+		"@babel/core": "^7.2.2",
+		"@babel/runtime": "^7.3.1",
+		"aws-sdk": "^2.395.0",
+		"axios": "^0.18.0",
+		"immutability-helper": "^3.0.0",
+		"koa": "^2.6.2",
+		"koa-bodyparser": "^4.2.1",
+		"koa-mount": "^4.0.0",
+		"koa-resource-router": "^0.4.0",
+		"koa-static": "^5.0.0",
+		"react": "^16.7.0",
+		"react-dom": "^16.7.0",
+		"webpack": "^4.29.0"
+	},
+	"devDependencies": {
+		"@babel/plugin-transform-runtime": "^7.2.0",
+		"@babel/preset-env": "^7.3.1",
+		"@babel/preset-react": "^7.0.0",
+		"babel-core": "^6.26.3",
+		"babel-loader": "^8.0.5",
+		"nodemon": "^1.18.9",
+		"npm-run-all": "^4.1.5",
+		"webpack-cli": "^3.2.1"
+	}
 }
