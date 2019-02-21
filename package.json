@@ -5,7 +5,10 @@
 	"main": "./server/server.js",
 	"scripts": {
 		"build": "webpack --config client/webpack.config.js",
-		"start": "webpack --config client/webpack.config.js && nodemon"
+		"build:watch": "nodemon --watch client --watch components --ignore bundle.js --ignore bundle.js.map --exec npm run build",
+		"server": "node server/server.js",
+		"server:watch": "nodemon --watch server --exec npm run server",
+		"start": " npm-run-all --parallel build:watch server:watch"
 	},
 	"repository": {
 		"type": "git",
@@ -22,7 +25,6 @@
 		"@babel/runtime": "^7.3.1",
 		"aws-sdk": "^2.395.0",
 		"axios": "^0.18.0",
-		"immutability-helper": "^3.0.0",
 		"koa": "^2.6.2",
 		"koa-bodyparser": "^4.2.1",
 		"koa-mount": "^4.0.0",
@@ -30,6 +32,7 @@
 		"koa-static": "^5.0.0",
 		"react": "^16.7.0",
 		"react-dom": "^16.7.0",
+		"react-material-ui-form-validator": "^2.0.3",
 		"webpack": "^4.29.0"
 	},
 	"devDependencies": {

@@ -23,8 +23,14 @@ module.exports = {
                     loader: "babel-loader",
                     options: {
                         presets: [
-                            "@babel/env",
-                            "@babel/react"
+                            ["@babel/preset-env",
+                            {
+                                "targets": {
+                                    "browsers": [">2% in US", "not op_mini all"]
+                                  }
+                            }
+                            ],
+                            "@babel/preset-react",
                         ],
                         plugins: [
                             [
