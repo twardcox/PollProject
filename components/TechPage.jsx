@@ -22,13 +22,16 @@ export default class TechPage extends React.Component {
 		this.setState({ adding: true });
 	}
 
-	handleClick(index, changeBy) {
-		const newstate = update(this.state, {
-			technologies: {
-				[index]: { count: { $apply: (q) => q + changeBy } }
-			}
-		});
-		this.setState(newstate);
+	handleClick(tech, changeBy) {
+		tech.count += changeBy;
+
+		axios
+			//  api = server, tech = database, tech.tech = specific document in DB
+			.put(`/api/tech/${tech.tech}`, tech)
+			.catch((error) => {
+				console.log('put error', error);
+			})
+			.then(() => this.load());
 	}
 
 	onChange(target) {
@@ -43,7 +46,7 @@ export default class TechPage extends React.Component {
 			.then(() => this.load())
 			.then(this.setState({ newTech: {}, adding: false }))
 			.catch((error) => {
-				console.log('error', error);
+				console.log('post error', error);
 			});
 	}
 
@@ -56,11 +59,12 @@ export default class TechPage extends React.Component {
 	}
 
 	async load() {
-		var response = await axios.get('/api/tech').catch((error) => {
-			console.log('error', error);
-		});
-
-		this.setState({ technologies: response.data });
+		try {
+			const response = await axios.get('/api/tech');
+			this.setState({ technologies: response.data });
+		} catch (error) {
+			console.log('load error', error);
+		}
 	}
 
 	render() {

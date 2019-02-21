@@ -54,5 +54,16 @@ exports.create = function*(next) {
 	let technology = ({ tech, count } = this.request.body);
 	yield Technologies.create(technology);
 	this.status = 201;
-	this.body = 'added!';
+	this.body = JSON.stringify(technology);
+};
+
+// PUT new count
+
+exports.update = function*(next) {
+	yield next;
+	if (!this.request.body || !this.request.body.tech) this.throw(400, '.tech required');
+	let technology = ({ tech, count } = this.request.body);
+	yield Technologies.update(technology, technology.tech);
+	this.status = 200;
+	this.body = JSON.stringify(technology);
 };

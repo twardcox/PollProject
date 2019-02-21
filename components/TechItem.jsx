@@ -5,7 +5,9 @@ export default (props) => (
 	<li>
 		<div>technology: {props.tech.tech}</div>
 		<div>count: {props.tech.count}</div>
-		<Button {...props} label="Add" changeBy={1} />
-		<Button {...props} label="Remove" changeBy={-1} />
+		<button onClick={() => props.handleClick(props.tech, 1)}>Add</button>
+		<button onClick={() => props.handleClick(props.tech, -1)} disabled={props.tech.count < 1 ? true : false}>
+			Remove
+		</button>
 	</li>
 );
