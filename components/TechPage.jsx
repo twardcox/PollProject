@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as axios from 'axios';
 import TechList from './TechList';
 import TechForm from './TechForm';
-import update from 'immutability-helper';
 
 export default class TechPage extends React.Component {
 	constructor(props) {
