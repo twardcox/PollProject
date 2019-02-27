@@ -96,7 +96,7 @@ export default class TechPage extends React.Component {
 						handleClick={this.handleClick}
 						handleDelete={this.handleDelete}
 					/>
-				)) || <h1>not here</h1>}
+				)) || <h1>not here also</h1>}
 			</div>
 		);
 	}
