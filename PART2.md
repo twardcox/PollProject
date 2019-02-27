@@ -10,9 +10,19 @@ She wants to be able to poll for more that just the four technologies she used a
 
 ## Implementation
 
-Add an input box that allows for additional technologies to be added to the poll. This input box should be always visible. We don't like clutter in the UI, so let's not use a scrollbar. There should be a button to add the technology. "Enter/Return" while in the button should also add the technology to the list. Since it's easy to make mistakes, we should allow for items to be removed from the list as well. Be sure to show a message in place of the list when there are no items. For instance, when they were all deleted, you might say "No Items to Display".
+DONE 1.  Add an input box that allows for additional technologies to be added to the poll. 
+    This input box should always be visible. We don't like clutter in the UI, so let's not use a scrollbar. 
+    
+DONE 2.  There should be a button to add the technology ("Submit"). Pressing the "Enter/Return" key while in the text field should also add the technology to the list. 
+
+DONE 3.  Since it's easy to make mistakes, we should allow for items to be removed from the list as well. 
+
+4.  Be sure to show a message in place of the list when there are no items. For instance, when they were all deleted, you might say "No Items to Display".
 
 **styling bonus**:
-See if you can make the input control look nice by having a nice boundary between the input area and the scrolling tech list. A [blurred drop shadow](https://www.w3schools.com/css/css3_shadows.asp) of a few pixels on the input area will give a nice transition.
+
+5.  See if you can make the input control look nice by having a nice boundary between the         input area and the scrolling tech list. 
+
+6.  A [blurred drop shadow](https://www.w3schools.com/css/css3_shadows.asp) of a few pixels       on the input area will give a nice transition.
 
 [Let us know](https://github.com/un-loop/PollProject/blob/master/PART3.md) when you are done.

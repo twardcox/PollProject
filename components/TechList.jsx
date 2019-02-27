@@ -10,6 +10,7 @@ export default (props) => (
 				handleClick={props.handleClick}
 				onChange={tech.onChange}
 				onSave={tech.onSave}
+				handleDelete={props.handleDelete}
 			/>
 		))}
 	</ul>

@@ -26,7 +26,7 @@ module.exports = {
 								'@babel/preset-env',
 								{
 									targets: {
-										browsers: [ '>2% in US', 'not op_mini all' ]
+										browsers: [ 'last 2 chrome versions' ]
 									}
 								}
 							],

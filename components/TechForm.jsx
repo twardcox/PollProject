@@ -1,6 +1,47 @@
 import * as React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 
-export default class TechForm extends React.Component {
+const styles = (theme) => ({
+	root: {
+		display: 'flex',
+		justifyContent: 'start',
+		alignItems: 'flex-end'
+	},
+	button: {
+		margin: theme.spacing.unit,
+		backGroundColor: 'red'
+	},
+	leftIcon: {
+		marginRight: theme.spacing.unit
+	},
+	rightIcon: {
+		marginLeft: theme.spacing.unit
+	},
+	iconSmall: {
+		fontSize: 20
+	},
+	icon: {
+		margin: theme.spacing.unit * 2
+	},
+	div1: {
+		fontSize: 30,
+		margin: 10,
+		width: 350,
+		color: '#cc0066',
+		border: '1px solid #003399',
+		padding: 4
+	},
+	div2: {
+		fontSize: 30,
+		margin: 10,
+		width: 200,
+		color: '#cc0066',
+		border: '1px solid #003399',
+		padding: 4
+	}
+});
+
+class TechForm extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -29,6 +70,7 @@ export default class TechForm extends React.Component {
 	}
 
 	render() {
+		const { classes } = this.props;
 		return (
 			<form onSubmit={this.onSubmit} onReset={this.onReset}>
 				<input
@@ -45,9 +87,11 @@ export default class TechForm extends React.Component {
 					value={this.props.count}
 					onChange={this.onChange}
 				/>
-				<input type="submit" value="Submit" />
+				<input className={classes.button} type="submit" value="Submit" />
 				<input type="reset" value="Cancel" />
 			</form>
 		);
 	}
 }
+
+export default withStyles(styles)(TechForm);

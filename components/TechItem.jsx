@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
 
@@ -72,6 +71,17 @@ const TechItem = (props) => {
 						remove_circle
 					</Icon>
 					Remove
+				</Button>
+				<Button
+					className={classes.button}
+					variant="contained"
+					color="default"
+					onClick={() => props.handleDelete(props.tech)}
+				>
+					<Icon className={classes.leftIcon} color="secondary">
+						delete_forever
+					</Icon>
+					Delete
 				</Button>
 			</div>
 		</li>

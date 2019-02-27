@@ -62,8 +62,16 @@ exports.create = function*(next) {
 exports.update = function*(next) {
 	yield next;
 	if (!this.request.body || !this.request.body.tech) this.throw(400, '.tech required');
-	let technology = ({ tech, count } = this.request.body);
+	let technology = (({ tech, count }) => ({ tech, count }))(this.request.body);
 	yield Technologies.update(technology, technology.tech);
 	this.status = 200;
 	this.body = JSON.stringify(technology);
+};
+
+// DELETE an entry
+exports.destroy = function*(next) {
+	yield next;
+	if (!this.params.tech) this.throw(400, 'tech id required');
+	yield Technologies.delete(this.params.tech);
+	this.status = 204;
 };
