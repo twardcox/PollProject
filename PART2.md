@@ -17,12 +17,12 @@ DONE 2.  There should be a button to add the technology ("Submit"). Pressing the
 
 DONE 3.  Since it's easy to make mistakes, we should allow for items to be removed from the list as well. 
 
-4.  Be sure to show a message in place of the list when there are no items. For instance, when they were all deleted, you might say "No Items to Display".
+DONE 4.  Be sure to show a message in place of the list when there are no items. For instance, when they were all deleted, you might say "No Items to Display".
 
 **styling bonus**:
 
-5.  See if you can make the input control look nice by having a nice boundary between the         input area and the scrolling tech list. 
+Done 5.  See if you can make the input control look nice by having a nice boundary between the input area and the scrolling tech list. 
 
-6.  A [blurred drop shadow](https://www.w3schools.com/css/css3_shadows.asp) of a few pixels       on the input area will give a nice transition.
+6.  A [blurred drop shadow](https://www.w3schools.com/css/css3_shadows.asp) of a few pixels on the input area will give a nice transition.
 
 [Let us know](https://github.com/un-loop/PollProject/blob/master/PART3.md) when you are done.

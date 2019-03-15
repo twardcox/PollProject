@@ -2,8 +2,12 @@ import * as React from 'react';
 import * as axios from 'axios';
 import TechList from './TechList';
 import TechForm from './TechForm';
+import Typography from '@material-ui/core/Typography';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import theme from './theme';
+import Divider from '@material-ui/core/Divider';
 
-export default class TechPage extends React.Component {
+class TechPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { adding: false, newTech: { tech: '', count: 0 } };
@@ -89,15 +93,27 @@ export default class TechPage extends React.Component {
 					onSave={this.onSave}
 					onReset={this.onCancel}
 				/>
-				{(this.state.technologies &&
-				this.state.technologies.length && (
+
+				<Divider style={{ margin: 25 }} />
+
+				{this.state.technologies && this.state.technologies.length ? (
 					<TechList
 						techs={this.state.technologies}
 						handleClick={this.handleClick}
 						handleDelete={this.handleDelete}
 					/>
-				)) || <h1>not here also</h1>}
+				) : (
+					<Typography color="primary" component="h2" variant="h1" gutterBottom>
+						No Items to Display
+					</Typography>
+				)}
 			</div>
 		);
 	}
 }
+
+export default (props) => (
+	<MuiThemeProvider theme={theme}>
+		<TechPage {...props} />
+	</MuiThemeProvider>
+);

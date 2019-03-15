@@ -1,43 +1,26 @@
 import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { FormControl, Button } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import LocalLibrary from '@material-ui/icons/LocalLibrary';
+import Grid from '@material-ui/core/Grid';
 
 const styles = (theme) => ({
 	root: {
-		display: 'flex',
-		justifyContent: 'start',
-		alignItems: 'flex-end'
+		flexGrow: 1,
+		margin: theme.spacing.unit * 6
 	},
-	button: {
-		margin: theme.spacing.unit,
-		backGroundColor: 'red'
+	paper: {
+		padding: theme.spacing.unit,
+		height: '100%',
+		color: theme.palette.text.secondary
 	},
-	leftIcon: {
-		marginRight: theme.spacing.unit
+	control: {
+		padding: theme.spacing.unit
 	},
-	rightIcon: {
-		marginLeft: theme.spacing.unit
-	},
-	iconSmall: {
-		fontSize: 20
-	},
-	icon: {
-		margin: theme.spacing.unit * 2
-	},
-	div1: {
-		fontSize: 30,
-		margin: 10,
-		width: 350,
-		color: '#cc0066',
-		border: '1px solid #003399',
-		padding: 4
-	},
-	div2: {
-		fontSize: 30,
-		margin: 10,
-		width: 200,
-		color: '#cc0066',
-		border: '1px solid #003399',
-		padding: 4
+	textInput: {
+		margin: theme.spacing.unit
 	}
 });
 
@@ -70,26 +53,61 @@ class TechForm extends React.Component {
 	}
 
 	render() {
-		const { classes } = this.props;
 		return (
-			<form onSubmit={this.onSubmit} onReset={this.onReset}>
-				<input
-					type="text"
-					name="tech"
-					placeholder="technology used"
-					value={this.props.tech}
-					onChange={this.onChange}
-				/>
-				<input
-					type="number"
-					name="count"
-					placeholder="usage"
-					value={this.props.count}
-					onChange={this.onChange}
-				/>
-				<input className={classes.button} type="submit" value="Submit" />
-				<input type="reset" value="Cancel" />
-			</form>
+			<FormControl onSubmit={this.onSubmit} onReset={this.onReset}>
+				<Grid container justify="center" spacing={8}>
+					<Grid item xs={6}>
+						<Grid container justify="flex-start" spacing={8}>
+							<Grid item xs={12}>
+								<TextField
+									className={this.props.textInput}
+									autoFocus={true}
+									type="text"
+									name="tech"
+									placeholder="technology used"
+									value={this.props.tech}
+									onChange={this.onChange}
+									id="input-with-icon-textfield"
+									label="Favorite Technology"
+									InputProps={{
+										startAdornment: (
+											<InputAdornment position="start">
+												<LocalLibrary />
+											</InputAdornment>
+										)
+									}}
+								/>
+							</Grid>
+						</Grid>
+					</Grid>
+					<Grid item xs={6}>
+						<Grid spacing={8} container justify="flex-end">
+							<Grid item xs={6}>
+								<Button
+									variant="contained"
+									color="primary"
+									type="submit"
+									value="Submit"
+									onClick={this.onSubmit}
+								>
+									Submit
+								</Button>
+							</Grid>
+							<Grid item xs={6}>
+								<Button
+									variant="contained"
+									color="default"
+									type="reset"
+									value="Cancel"
+									onClick={this.onReset}
+								>
+									Cancel
+								</Button>
+							</Grid>
+						</Grid>
+					</Grid>
+				</Grid>
+			</FormControl>
 		);
 	}
 }
