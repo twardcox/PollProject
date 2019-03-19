@@ -23,6 +23,6 @@ DONE 4.  Be sure to show a message in place of the list when there are no items.
 
 Done 5.  See if you can make the input control look nice by having a nice boundary between the input area and the scrolling tech list. 
 
-6.  A [blurred drop shadow](https://www.w3schools.com/css/css3_shadows.asp) of a few pixels on the input area will give a nice transition.
+Done 6.  A [blurred drop shadow](https://www.w3schools.com/css/css3_shadows.asp) of a few pixels on the input area will give a nice transition.
 
 [Let us know](https://github.com/un-loop/PollProject/blob/master/PART3.md) when you are done.

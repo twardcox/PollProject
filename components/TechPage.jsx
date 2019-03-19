@@ -18,6 +18,7 @@ class TechPage extends React.Component {
 		this.onSave = this.onSave.bind(this);
 		this.handleClick = this.handleClick.bind(this);
 		this.handleDelete = this.handleDelete.bind(this);
+		// this.compare = this.compare.bind(this);
 	}
 
 	onAdd(e) {
@@ -74,10 +75,24 @@ class TechPage extends React.Component {
 		this.load();
 	}
 
+	compare(a, b) {
+		let NameA = a.tech.toUpperCase();
+		let NameB = b.tech.toUpperCase();
+
+		if (NameA < NameB) {
+			return -1;
+		}
+		if (NameA > NameB) {
+			return 1;
+		}
+		// a must be equal to b
+		return 0;
+	}
+
 	async load() {
 		try {
 			const response = await axios.get('/api/tech');
-			this.setState({ technologies: response.data });
+			this.setState({ technologies: response.data.sort(this.compare) });
 		} catch (error) {
 			console.log('load error', error);
 		}
