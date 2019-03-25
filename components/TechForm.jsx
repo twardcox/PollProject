@@ -31,7 +31,6 @@ class TechForm extends React.Component {
 		this.props = props;
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onChange = this.onChange.bind(this);
-		this.onReset = this.onReset.bind(this);
 	}
 
 	onSubmit(e) {
@@ -46,29 +45,24 @@ class TechForm extends React.Component {
 		this.props.onChange && this.props.onChange(e.target);
 	}
 
-	onReset(e) {
-		e.preventDefault();
-
-		this.props.onReset && this.props.onReset(e.target);
-	}
-
 	render() {
 		return (
-			<FormControl onSubmit={this.onSubmit} onReset={this.onReset}>
+			<FormControl onSubmit={this.onSubmit}>
 				<Grid container justify="center" spacing={8}>
-					<Grid item xs={6}>
+					<Grid item sm={6}>
 						<Grid container justify="flex-start" spacing={8}>
-							<Grid item xs={12}>
+							<Grid item sm={12}>
 								<TextField
 									className={this.props.textInput}
 									autoFocus={true}
 									type="text"
 									name="tech"
 									placeholder="technology used"
-									value={this.props.tech}
-									onChange={this.onChange}
+									value={this.props.name}
+									onChange={this.props.onChange}
 									id="input-with-icon-textfield"
-									label="Favorite Technology"
+									label={this.props.isFiltering ? 'Tech Filter' : 'Favorite Technology'}
+									fullWidth={true}
 									InputProps={{
 										startAdornment: (
 											<InputAdornment position="start">
@@ -80,28 +74,31 @@ class TechForm extends React.Component {
 							</Grid>
 						</Grid>
 					</Grid>
-					<Grid item xs={6}>
+					<Grid item sm={6}>
 						<Grid spacing={8} container justify="flex-end">
-							<Grid item xs={6}>
-								<Button
-									variant="contained"
-									color="primary"
-									type="submit"
-									value="Submit"
-									onClick={this.onSubmit}
-								>
-									Submit
-								</Button>
-							</Grid>
-							<Grid item xs={6}>
+							{!this.props.isFiltering && (
+								<Grid item sm={6}>
+									<Button
+										variant="contained"
+										color="primary"
+										type="submit"
+										value="Submit"
+										onClick={this.onSubmit}
+									>
+										Submit
+									</Button>
+								</Grid>
+							)}
+
+							<Grid item sm={6}>
 								<Button
 									variant="contained"
 									color="default"
 									type="reset"
 									value="Cancel"
-									onClick={this.onReset}
+									onClick={this.props.toggleFilter}
 								>
-									Cancel
+									{this.props.isFiltering ? 'Clear' : 'Filter'}
 								</Button>
 							</Grid>
 						</Grid>

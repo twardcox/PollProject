@@ -10,7 +10,7 @@ import Divider from '@material-ui/core/Divider';
 class TechPage extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { adding: false, newTech: { tech: '', count: 0 } };
+		this.state = { adding: false, techInput: '', isFiltering: false };
 		this.props = props;
 		this.onChange = this.onChange.bind(this);
 		this.onAdd = this.onAdd.bind(this);
@@ -18,7 +18,7 @@ class TechPage extends React.Component {
 		this.onSave = this.onSave.bind(this);
 		this.handleClick = this.handleClick.bind(this);
 		this.handleDelete = this.handleDelete.bind(this);
-		// this.compare = this.compare.bind(this);
+		this.toggleFilter = this.toggleFilter.bind(this);
 	}
 
 	onAdd(e) {
@@ -51,24 +51,22 @@ class TechPage extends React.Component {
 			.then(() => this.load());
 	}
 
-	onChange(target) {
-		var newTech = { ...this.state.newTech };
-		newTech[target.name] = target.value;
-		this.setState({ newTech: newTech });
+	onChange(e) {
+		this.setState({ techInput: e.target.value });
 	}
 
 	onSave() {
 		axios
-			.post('/api/tech/', this.state.newTech)
+			.post('/api/tech/', { tech: this.state.techInput, count: 0 })
 			.then(() => this.load())
-			.then(this.setState({ newTech: { tech: '', count: 0 }, adding: false }))
+			.then(this.setState({ techInput: '', adding: false }))
 			.catch((error) => {
 				console.log('post error', error);
 			});
 	}
 
 	onCancel() {
-		this.setState({ newTech: { tech: '', count: 0 }, adding: false });
+		this.setState({ techInput: '', adding: false });
 	}
 
 	componentDidMount() {
@@ -89,6 +87,11 @@ class TechPage extends React.Component {
 		return 0;
 	}
 
+	toggleFilter() {
+		let toggle = this.state.isFiltering ? false : true;
+		this.setState({ isFiltering: toggle });
+	}
+
 	async load() {
 		try {
 			const response = await axios.get('/api/tech');
@@ -99,21 +102,28 @@ class TechPage extends React.Component {
 	}
 
 	render() {
+		const applyFilter = (data) => {
+			if (!this.state.isFiltering) return data;
+
+			return data.filter((item) => item.tech.toUpperCase().startsWith(this.state.techInput.toUpperCase()));
+		};
+
 		return (
 			<div>
 				<TechForm
-					name={this.state.newTech.tech}
-					count={this.state.newTech.count}
+					name={this.state.techInput}
 					onChange={this.onChange}
 					onSave={this.onSave}
 					onReset={this.onCancel}
+					isFiltering={this.state.isFiltering}
+					toggleFilter={this.toggleFilter}
 				/>
 
 				<Divider style={{ margin: 25 }} />
 
 				{this.state.technologies && this.state.technologies.length ? (
 					<TechList
-						techs={this.state.technologies}
+						techs={applyFilter(this.state.technologies)}
 						handleClick={this.handleClick}
 						handleDelete={this.handleDelete}
 					/>
