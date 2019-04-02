@@ -1,7 +1,7 @@
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
-import React from 'react';
 
 const styles = (theme) => ({
 	iconography: {

@@ -55,6 +55,9 @@ const TechList = (props) => {
 					))}
 				</TableBody>
 			</Table>
+			<a href={'/report.html'} target="_parent">
+				View Report
+			</a>
 		</Paper>
 	);
 };

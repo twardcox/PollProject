@@ -10,7 +10,12 @@ Professor Smith wants to be able to do reporting on the results to do easier com
 
 ## Implementation
 
-Add a report button. this button will either navigate to another page or load a report view (if you prefer the single page app model). The report
-will show a list of technologies sorted by count. It should not contain any buttons or input forms other that a "clear" or "back" button.
+Done 1. Add a report button. 
+
+Done 2. this button will either navigate to another page or load a report view (if you prefer the single page app model).
+
+Done 3. The report will show a list of technologies sorted by count. 
+
+Done 4. It should not contain any buttons or input forms other that a "clear" or "back" button.
 
 This is your last assignment. Enjoy!

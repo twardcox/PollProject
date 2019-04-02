@@ -120,6 +120,7 @@ class TechPage extends React.Component {
 	async load() {
 		try {
 			const response = await axios.get('/api/tech');
+
 			this.setState({ technologies: response.data.sort(this.compare) });
 		} catch (error) {
 			console.log('load error', error);

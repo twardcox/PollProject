@@ -1,8 +1,11 @@
 module.exports = {
 	mode: 'development',
-	entry: __dirname + '/index.jsx',
+	entry: {
+		home: __dirname + '/index.jsx',
+		report: __dirname + '/report.jsx'
+	},
 	output: {
-		filename: 'bundle.js',
+		filename: '[id]-bundle.js',
 		path: __dirname
 	},
 
