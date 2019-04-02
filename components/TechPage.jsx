@@ -9,6 +9,7 @@ import Divider from '@material-ui/core/Divider';
 import ErrorModal from './ErrorModal';
 import Modal from '@material-ui/core/Modal';
 import DuplicateError from './DuplicateError';
+import Slide from '@material-ui/core/Slide';
 
 class TechPage extends React.Component {
 	constructor(props) {
@@ -154,7 +155,17 @@ class TechPage extends React.Component {
 					applyFilter={this.applyFilter}
 					entry={this.state.techInput}
 				/>
-				{this.state.duplicateRecord && <DuplicateError onDuplicateCancel={this.onDuplicateCancel} />}
+				{this.state.duplicateRecord && (
+					<Slide
+						timeout={{ union: 10 }}
+						direction="left"
+						in={this.state.duplicateRecord}
+						mountOnEnter
+						unmountOnExit
+					>
+						<DuplicateError onDuplicateCancel={this.onDuplicateCancel} />
+					</Slide>
+				)}
 				<Divider style={{ margin: 25 }} />
 
 				{this.state.technologies && this.state.technologies.length ? (

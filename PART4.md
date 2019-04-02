@@ -16,11 +16,10 @@ Done 1. We need to be sure to do some validation on our operations. We think tha
 Done 2. We can show this in a modal and have Professor Smith confirm that she wants to delete the item. You can use a [component](https://github.com/reactjs/react-modal) to do this, or use a framework 
 like [bootsrap](https://getbootstrap.com/) or [material-ui](https://material-ui.com/) that supports modals. 
 
-3. Also, we should check whether a technology already exists before allowing one to be added. If it exists, we should display a message. This message, we think, can be inline and shown in red below the input box.
+Done 3. Also, we should check whether a technology already exists before allowing one to be added. If it exists, we should display a message. This message, we think, can be inline and shown in red below the input box.
 
-4. **bonus styling**: use [css transitions](https://www.w3schools.com/css/css3_transitions.asp) to "slide" the error message in. Have the error message component have a background and border
-so that it stands out from the remainder of the app. 
+Done 4. **bonus styling**: use [css transitions](https://www.w3schools.com/css/css3_transitions.asp) to "slide" the error message in. Have the error message component have a background and border so that it stands out from the remainder of the app. 
 
-5. Add an icon or "x" to allow the message to be dismissed.
+Done 5. Add an icon or "x" to allow the message to be dismissed.
 
 [Let us know](https://github.com/un-loop/PollProject/blob/master/PART5.md) when you are done.
