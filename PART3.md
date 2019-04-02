@@ -16,9 +16,9 @@ We think that two solutions should handle this nicely, and Professor Smith agree
 Done 1.  First, the technology results should be sorted. Professor Smith said that she doesn't care about capitalization and she wants all related technologies to be shown together. So, anything starting with "J" should show together, regardless of 
 case. This, then, should be a case-insensitive sort. 
 
-done 2.  We also suggested adding a filter, and she though this was a great idea. There should be a filter toggle (can be a button) that will initiate a "filter mode". While filtering, any text entered into the input box will serve as a live filter on the technology list.
+Done 2.  We also suggested adding a filter, and she though this was a great idea. There should be a filter toggle (can be a button) that will initiate a "filter mode". While filtering, any text entered into the input box will serve as a live filter on the technology list.
 
-3.  Also, all other functionality (add, delete, increment, decrement) should still function while the filter is active. Since she doesn't care about casing, the filter should be case-insensitive as well. 
+Done 3.  Also, all other functionality (add, delete, increment, decrement) should still function while the filter is active. Since she doesn't care about casing, the filter should be case-insensitive as well. 
 
 Done 4.  There should be a "clear" button that shows when the filter is active that will turn filtering off.
 

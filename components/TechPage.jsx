@@ -6,11 +6,14 @@ import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
 import Divider from '@material-ui/core/Divider';
+import ErrorModal from './ErrorModal';
+import Modal from '@material-ui/core/Modal';
+import DuplicateError from './DuplicateError';
 
 class TechPage extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { adding: false, techInput: '', isFiltering: false };
+		this.state = { adding: false, techInput: '', isFiltering: false, deleteError: false, duplicateRecord: false };
 		this.props = props;
 		this.onChange = this.onChange.bind(this);
 		this.onAdd = this.onAdd.bind(this);
@@ -19,6 +22,8 @@ class TechPage extends React.Component {
 		this.handleClick = this.handleClick.bind(this);
 		this.handleDelete = this.handleDelete.bind(this);
 		this.toggleFilter = this.toggleFilter.bind(this);
+		this.onDuplicateCancel = this.onDuplicateCancel.bind(this);
+		this.modalDelete = this.modalDelete.bind(this);
 	}
 
 	onAdd(e) {
@@ -41,9 +46,15 @@ class TechPage extends React.Component {
 	}
 
 	handleDelete(tech) {
+		if (tech.count > 0) {
+			this.setState({ deleteError: tech });
+		} else {
+			this.modalDelete(tech);
+		}
+	}
+
+	modalDelete(tech) {
 		axios
-			//  api = server, tech = database, tech.tech = specific document in DB
-			// tech = specific record
 			.delete(`/api/tech/${tech.tech}`, tech)
 			.catch((error) => {
 				console.log('delete error', error);
@@ -55,14 +66,27 @@ class TechPage extends React.Component {
 		this.setState({ techInput: e.target.value });
 	}
 
+	duplicateFilter(data) {
+		return data.findIndex((item) => item.tech.toUpperCase() === this.state.techInput.toUpperCase());
+	}
+
 	onSave() {
-		axios
-			.post('/api/tech/', { tech: this.state.techInput, count: 0 })
-			.then(() => this.load())
-			.then(this.setState({ techInput: '', adding: false }))
-			.catch((error) => {
-				console.log('post error', error);
-			});
+		if (this.duplicateFilter(this.state.technologies) >= 0) {
+			this.setState({ duplicateRecord: true });
+			return;
+		} else {
+			axios
+				.post('/api/tech/', { tech: this.state.techInput, count: 0 })
+				.then(() => this.load())
+				.then(this.setState({ techInput: '', adding: false }))
+				.catch((error) => {
+					console.log('post error', error);
+				});
+		}
+	}
+
+	onDuplicateCancel() {
+		this.setState({ duplicateRecord: false });
 	}
 
 	onCancel() {
@@ -110,15 +134,27 @@ class TechPage extends React.Component {
 
 		return (
 			<div>
+				<Modal open={Boolean(this.state.deleteError)} onClose={() => this.setState({ deleteError: false })}>
+					<ErrorModal
+						onContinue={() => {
+							this.modalDelete(this.state.deleteError);
+							this.setState({ deleteError: false });
+						}}
+						onUndo={() => this.setState({ deleteError: false })}
+					/>
+				</Modal>
 				<TechForm
 					name={this.state.techInput}
 					onChange={this.onChange}
 					onSave={this.onSave}
 					onReset={this.onCancel}
 					isFiltering={this.state.isFiltering}
+					duplicateRecord={this.state.duplicateRecord}
 					toggleFilter={this.toggleFilter}
+					applyFilter={this.applyFilter}
+					entry={this.state.techInput}
 				/>
-
+				{this.state.duplicateRecord && <DuplicateError onDuplicateCancel={this.onDuplicateCancel} />}
 				<Divider style={{ margin: 25 }} />
 
 				{this.state.technologies && this.state.technologies.length ? (
@@ -126,6 +162,8 @@ class TechPage extends React.Component {
 						techs={applyFilter(this.state.technologies)}
 						handleClick={this.handleClick}
 						handleDelete={this.handleDelete}
+						modalDelete={this.modalDelete}
+						deleteError={this.state.deleteError}
 					/>
 				) : (
 					<Typography color="primary" component="h2" variant="h1" gutterBottom>

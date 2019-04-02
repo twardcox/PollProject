@@ -7,20 +7,8 @@ import LocalLibrary from '@material-ui/icons/LocalLibrary';
 import Grid from '@material-ui/core/Grid';
 
 const styles = (theme) => ({
-	root: {
-		flexGrow: 1,
-		margin: theme.spacing.unit * 6
-	},
-	paper: {
-		padding: theme.spacing.unit,
-		height: '100%',
-		color: theme.palette.text.secondary
-	},
-	control: {
-		padding: theme.spacing.unit
-	},
 	textInput: {
-		margin: theme.spacing.unit
+		width: 160
 	}
 });
 
@@ -35,7 +23,6 @@ class TechForm extends React.Component {
 
 	onSubmit(e) {
 		e.preventDefault();
-
 		this.props.onSave && this.props.onSave.call(this);
 	}
 
@@ -49,11 +36,11 @@ class TechForm extends React.Component {
 		return (
 			<FormControl onSubmit={this.onSubmit}>
 				<Grid container justify="center" spacing={8}>
-					<Grid item sm={6}>
+					<Grid item>
 						<Grid container justify="flex-start" spacing={8}>
-							<Grid item sm={12}>
+							<Grid item>
 								<TextField
-									className={this.props.textInput}
+									className={this.props.classes.textInput}
 									autoFocus={true}
 									type="text"
 									name="tech"
@@ -63,6 +50,7 @@ class TechForm extends React.Component {
 									id="input-with-icon-textfield"
 									label={this.props.isFiltering ? 'Tech Filter' : 'Favorite Technology'}
 									fullWidth={true}
+									autoComplete="off"
 									InputProps={{
 										startAdornment: (
 											<InputAdornment position="start">
@@ -74,10 +62,10 @@ class TechForm extends React.Component {
 							</Grid>
 						</Grid>
 					</Grid>
-					<Grid item sm={6}>
+					<Grid item>
 						<Grid spacing={8} container justify="flex-end">
 							{!this.props.isFiltering && (
-								<Grid item sm={6}>
+								<Grid item>
 									<Button
 										variant="contained"
 										color="primary"
@@ -90,7 +78,7 @@ class TechForm extends React.Component {
 								</Grid>
 							)}
 
-							<Grid item sm={6}>
+							<Grid item>
 								<Button
 									variant="contained"
 									color="default"
